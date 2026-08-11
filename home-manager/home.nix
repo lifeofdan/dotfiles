@@ -11,8 +11,12 @@
     ];
 
     programs.git = {
-        enable = true;
-        userName = "Daniel Newman";
-        userEmail = "contact@lifeofdan.me";
+      enable = true;
+      settings = {
+        user {
+          name = "Daniel Newman";
+          email = "contact@lifeofdan.me"
+        };
+      };
     };
 }
