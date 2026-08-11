@@ -15,7 +15,7 @@
       settings = {
         user = {
           name = "Daniel Newman";
-          email = "contact@lifeofdan.me"
+          email = "contact@lifeofdan.me";
         };
       };
     };
