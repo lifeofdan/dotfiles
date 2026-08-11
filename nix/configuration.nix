@@ -4,15 +4,11 @@
 
 { config, pkgs, ... }:
 
-let
-  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-26.05.tar.gz;
-in
-
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      (import "${home-manager}/nixos")
+      <home-manager/nixos>
     ];
 
   home-manager.useUserPackages = true;
