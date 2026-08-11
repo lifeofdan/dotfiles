@@ -13,7 +13,7 @@
     programs.git = {
       enable = true;
       settings = {
-        user {
+        user = {
           name = "Daniel Newman";
           email = "contact@lifeofdan.me"
         };
