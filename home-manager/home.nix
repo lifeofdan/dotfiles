@@ -6,8 +6,9 @@
     home.stateVersion = "26.05";
 
     home.packages = with pkgs; [
-        neovim
-        zsh
+      gcc
+      neovim
+      zsh
     ];
 
     programs.git = {
