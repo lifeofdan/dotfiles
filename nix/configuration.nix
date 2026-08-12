@@ -5,11 +5,11 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      <home-manager/nixos>
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    <home-manager/nixos>
+  ];
 
   home-manager.useUserPackages = true;
   home-manager.useGlobalPkgs = true;
@@ -85,20 +85,25 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."nixofdan" = {
     openssh.authorizedKeys.keys = [
-     "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDnoW6W0nvbi1bKb/BJNte/IgOqlKUhmO9rPJxU2IG00I1vGYpEedu58qmtw9IMw6ldOf08Ycii73XDOPfiFyCrEtiu7I0p+ECJcz0Z5EXf1nPyxeW4zfqIC+DpLXLbHs8HL0FAIoQ0G32s1dH9cUKEaC4RkjFewmdvfUe33W3lanh3T+3V6UfOHN2qizW6w7XzM/+csrErjnzCPm02IRkTnDDLyvPhZyX2+15A3bi6M6YmvGlest2Xa98UoL9gFWgYbenLOXdN6eivtPnyWwI5cFRGeDxU11p+C/jM0Usr/C/A+TRRnXhjQ4964sBlFCBm0CHH89lPv/jUCcccdsrl dan@desktop"
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDnoW6W0nvbi1bKb/BJNte/IgOqlKUhmO9rPJxU2IG00I1vGYpEedu58qmtw9IMw6ldOf08Ycii73XDOPfiFyCrEtiu7I0p+ECJcz0Z5EXf1nPyxeW4zfqIC+DpLXLbHs8HL0FAIoQ0G32s1dH9cUKEaC4RkjFewmdvfUe33W3lanh3T+3V6UfOHN2qizW6w7XzM/+csrErjnzCPm02IRkTnDDLyvPhZyX2+15A3bi6M6YmvGlest2Xa98UoL9gFWgYbenLOXdN6eivtPnyWwI5cFRGeDxU11p+C/jM0Usr/C/A+TRRnXhjQ4964sBlFCBm0CHH89lPv/jUCcccdsrl dan@desktop"
     ];
     isNormalUser = true;
     description = "nixofdan";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [
       git
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
   # Start OpenSSL Client and disable Gnome's
   programs.ssh.startAgent = true;
   services.gnome.gcr-ssh-agent.enable = false;
+
+  programs.hyprland.enable = true;
 
   # Install firefox.
   programs.firefox.enable = true;
@@ -107,13 +112,16 @@
   nixpkgs.config.allowUnfree = true;
 
   # Enable the Flakes feature and the accompanying new nix command-line tool
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -134,7 +142,7 @@
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
       PermitRootLogin = "no";
-      AllowUsers = ["nixofdan"];
+      AllowUsers = [ "nixofdan" ];
       MaxAuthTries = 3;
       PerSourcePenalties = "crash:3600s authfail:3600s max:86400s";
     };
