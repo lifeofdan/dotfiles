@@ -4,12 +4,19 @@
     home.username = "nixofdan";
     home.homeDirectory = "/home/nixofdan";
     home.stateVersion = "26.05";
-
     home.packages = with pkgs; [
-      gcc
       neovim
       zsh
     ];
+
+    programs.neovim = {
+      enable = true;
+
+      extraPackages = with pkgs; [
+        tree-sitter
+        gcc
+      ];
+    };
 
     programs.git = {
       enable = true;
